@@ -155,13 +155,6 @@
 
   
   <url>
-    <loc>https://gdutxujun94.github.io/tags/idea/</loc>
-    <lastmod>2023-02-19</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://gdutxujun94.github.io/tags/ChatGpt/</loc>
     <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
@@ -169,7 +162,7 @@
   </url>
   
   <url>
-    <loc>https://gdutxujun94.github.io/tags/git/</loc>
+    <loc>https://gdutxujun94.github.io/tags/idea/</loc>
     <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -190,14 +183,14 @@
   </url>
   
   <url>
-    <loc>https://gdutxujun94.github.io/tags/Typora/</loc>
+    <loc>https://gdutxujun94.github.io/tags/git/</loc>
     <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://gdutxujun94.github.io/tags/UltraISO/</loc>
+    <loc>https://gdutxujun94.github.io/tags/Typora/</loc>
     <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -212,6 +205,13 @@
   
   <url>
     <loc>https://gdutxujun94.github.io/tags/Xmind/</loc>
+    <lastmod>2023-02-19</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://gdutxujun94.github.io/tags/UltraISO/</loc>
     <lastmod>2023-02-19</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
