@@ -229,7 +229,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.3k</span>
+              <span>1.4k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -473,7 +473,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>6.8k</span>
+              <span>7.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -665,7 +665,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>4.8k</span>
+              <span>4.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -809,7 +809,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>2.9k</span>
+              <span>3.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -894,7 +894,7 @@
 <p> 这里同样以我本机目录下的G:&#x2F;&#x2F;test 仓库为例子，</p>
 <p> 找到仓库下 .git 文件夹下的config文件，打开，可以看到以下内容</p>
 <figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"> [core]</span><br><span class="line">	<span class="attr">repositoryformatversion</span> = <span class="number">0</span></span><br><span class="line">	<span class="attr">filemode</span> = <span class="literal">false</span></span><br><span class="line">	<span class="attr">bare</span> = <span class="literal">false</span></span><br><span class="line">	<span class="attr">logallrefupdates</span> = <span class="literal">true</span></span><br><span class="line">	<span class="attr">symlinks</span> = <span class="literal">false</span></span><br><span class="line">	<span class="attr">ignorecase</span> = <span class="literal">true</span></span><br><span class="line">[remote <span class="string">&quot;origin&quot;</span>]</span><br><span class="line">	<span class="attr">url</span> = https://github.com/gdutxiaoxu/test.git</span><br><span class="line">	<span class="attr">fetch</span> = +refs/heads<span class="comment">/*:refs/remotes/origin/*</span></span><br><span class="line"><span class="comment">[branch &quot;master&quot;]</span></span><br><span class="line"><span class="comment">	remote = origin</span></span><br><span class="line"><span class="comment">	merge = refs/heads/master</span></span><br></pre></td></tr></table></figure>
-<p> 将文件中的 url &#x3D; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/gdutxiaoxu/test.git">https://github.com/gdutxiaoxu/test.git</a> 更改为 url &#x3D; <a href="mailto:&#x67;&#105;&#116;&#64;&#103;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;">&#x67;&#105;&#116;&#64;&#103;&#105;&#116;&#104;&#x75;&#98;&#x2e;&#x63;&#x6f;&#x6d;</a>:gdutxiaoxu&#x2F;test.git 即可。</p>
+<p> 将文件中的 url &#x3D; <a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/gdutxiaoxu/test.git">https://github.com/gdutxiaoxu/test.git</a> 更改为 url &#x3D; <a href="mailto:&#x67;&#x69;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;">&#x67;&#x69;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#117;&#x62;&#x2e;&#x63;&#111;&#x6d;</a>:gdutxiaoxu&#x2F;test.git 即可。</p>
 <p>修改后的文件如下</p>
 <figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-attr">[core]</span></span><br><span class="line">	repositoryformatversion = <span class="number">0</span></span><br><span class="line">	filemode = false</span><br><span class="line">	bare = false</span><br><span class="line">	logallrefupdates = true</span><br><span class="line">	symlinks = false</span><br><span class="line">	ignorecase = true</span><br><span class="line"><span class="selector-attr">[remote <span class="string">&quot;origin&quot;</span>]</span></span><br><span class="line">	url = git@github<span class="selector-class">.com</span>:gdutxiaoxu/test<span class="selector-class">.git</span></span><br><span class="line">	fetch = +refs/heads<span class="comment">/*:refs/remotes/origin/*</span></span><br><span class="line"><span class="comment">[branch &quot;master&quot;]</span></span><br><span class="line"><span class="comment">	remote = origin</span></span><br><span class="line"><span class="comment">	merge = refs/heads/master</span></span><br></pre></td></tr></table></figure>
 
@@ -988,7 +988,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>652</span>
+              <span>678</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1214,7 +1214,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>543</span>
+              <span>585</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1324,7 +1324,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>367</span>
+              <span>431</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1424,7 +1424,7 @@
                 <i class="far fa-file-word"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>635</span>
+              <span>653</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -1617,12 +1617,12 @@
     <span class="post-meta-item-icon">
       <i class="fa fa-chart-area"></i>
     </span>
-    <span title="站点总字数">31k</span>
+    <span title="站点总字数">32k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
-    <span title="站点阅读时长">28 分钟</span>
+    <span title="站点阅读时长">29 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Pisces</a> 强力驱动
   </div>
