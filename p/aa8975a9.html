@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.junxu666.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="常用的自定义View例子一（ FlowLayout）在Android开发中，我们经常会遇到流布式的布局，经常会用来一些标签的显示，比如qq中个人便签，搜索框下方提示的词语，这些是指都是流布式的布局，今天我就我们日常开放中遇到的流布式布局坐一些总结 转载请注明博客地址：http:&#x2F;&#x2F;blog.csdn.net&#x2F;gdutxiaoxu&#x2F;article&#x2F;details&#x2F;51765428 **源码下载地">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用的自定义View例子一(FlowLayout)">
+<meta property="og:url" content="https://blog.junxu666.top/p/aa8975a9.html">
+<meta property="og:site_name" content="程序员徐公">
+<meta property="og:description" content="常用的自定义View例子一（ FlowLayout）在Android开发中，我们经常会遇到流布式的布局，经常会用来一些标签的显示，比如qq中个人便签，搜索框下方提示的词语，这些是指都是流布式的布局，今天我就我们日常开放中遇到的流布式布局坐一些总结 转载请注明博客地址：http:&#x2F;&#x2F;blog.csdn.net&#x2F;gdutxiaoxu&#x2F;article&#x2F;details&#x2F;51765428 **源码下载地">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2050203-5c7ec8613c260711?imageMogr2/auto-orient/strip">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2050203-853e808198e625ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2050203-29a7127ebbcc1d0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2050203-41f01da256c4c30c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2050203-6cf16ca4cb7c2302.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/2050203-29a7127ebbcc1d0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="article:published_time" content="2016-12-08T05:48:06.000Z">
+<meta property="article:modified_time" content="2016-12-08T12:03:26.000Z">
+<meta property="article:author" content="徐公">
+<meta property="article:tag" content="FlowLayout">
+<meta property="article:tag" content="自定义控件">
+<meta property="article:tag" content="流布式布局">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/2050203-5c7ec8613c260711?imageMogr2/auto-orient/strip">
+
+<link rel="canonical" href="https://blog.junxu666.top/p/aa8975a9.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>常用的自定义View例子一(FlowLayout) | 程序员徐公</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="程序员徐公" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">程序员徐公</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">微信公众号：【徐公】</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.junxu666.top/p/aa8975a9.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="徐公">
+      <meta itemprop="description" content="「Android学习+面试指南」助你升职加薪">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="程序员徐公">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          常用的自定义View例子一(FlowLayout)
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2016-12-08 13:48:06 / 修改时间：20:03:26" itemprop="dateCreated datePublished" datetime="2016-12-08T13:48:06+08:00">2016-12-08</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>17k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>16 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>﻿</p>
+<h1 id="常用的自定义View例子一（-FlowLayout）"><a href="#常用的自定义View例子一（-FlowLayout）" class="headerlink" title="常用的自定义View例子一（ FlowLayout）"></a>常用的自定义View例子一（ FlowLayout）</h1><p><strong>在Android开发中，我们经常会遇到流布式的布局，经常会用来一些标签的显示，比如qq中个人便签，搜索框下方提示的词语，这些是指都是流布式的布局，今天我就我们日常开放中遇到的流布式布局坐一些总结</strong></p>
+<p><strong><a target="_blank" rel="external nofollow noopener noreferrer" href="http://blog.csdn.net/gdutxiaoxu/article/details/51765428">转载请注明博客地址：</a><a target="_blank" rel="external nofollow noopener noreferrer" href="http://blog.csdn.net/gdutxiaoxu/article/details/51765428">http://blog.csdn.net/gdutxiaoxu/article/details/51765428</a></strong></p>
+<p>**<a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/gdutxiaoxu/CustomViewDemo.git">源码下载地址：</a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/gdutxiaoxu/CustomViewDemo.git">https://github.com/gdutxiaoxu/CustomViewDemo.git</a> **</p>
+<p><img src="http://upload-images.jianshu.io/upload_images/2050203-5c7ec8613c260711?imageMogr2/auto-orient/strip" alt="效果图"></p>
+<h2 id="1-先给大家看一下效果"><a href="#1-先给大家看一下效果" class="headerlink" title="1. 先给大家看一下效果"></a>1. 先给大家看一下效果</h2><ul>
+<li>图一</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2050203-853e808198e625ae.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<hr>
+<ul>
+<li>图二</li>
+</ul>
+<p><img src="http://upload-images.jianshu.io/upload_images/2050203-29a7127ebbcc1d0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<hr>
+<p><strong>仔细观察，我们可以知道图二其实是图一效果的升级版，图一当我们控件的宽度超过这一行的时候，剩余的宽度它不会自动分布到每个控件中，而图二的效果当我们换行的时候，如控件还没有占满这一行的时候，它会自动把剩余的宽度分布到每个控件中</strong></p>
+<h2 id="2-废话不多说了，大家来直接看来看一下图一的源码"><a href="#2-废话不多说了，大家来直接看来看一下图一的源码" class="headerlink" title="2.废话不多说了，大家来直接看来看一下图一的源码"></a>2.废话不多说了，大家来直接看来看一下图一的源码</h2><h3 id="1）代码如下"><a href="#1）代码如下" class="headerlink" title="1）代码如下"></a>1）代码如下</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 博客地址：http://blog.csdn.net/gdutxiaoxu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> xujun</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@time</span> 2016/6/20 23:49.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">SimpleFlowLayout</span> <span class="keyword">extends</span> <span class="title class_">ViewGroup</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span>  <span class="variable">verticalSpacing</span> <span class="operator">=</span> <span class="number">20</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">SimpleFlowLayout</span><span class="params">(Context context )</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 重写onMeasure方法是为了确定最终的大小</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> widthMeasureSpec</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> heightMeasureSpec</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onMeasure</span><span class="params">(<span class="type">int</span> widthMeasureSpec, <span class="type">int</span> heightMeasureSpec)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">widthSpecMode</span> <span class="operator">=</span> MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">        <span class="type">int</span> <span class="variable">widthSpecSize</span> <span class="operator">=</span> MeasureSpec.getSize(widthMeasureSpec);</span><br><span class="line">        <span class="type">int</span> <span class="variable">heightSpecMode</span> <span class="operator">=</span> MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">        <span class="type">int</span> <span class="variable">heightSpecSize</span> <span class="operator">=</span> MeasureSpec.getSize(heightMeasureSpec);</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">paddingLeft</span> <span class="operator">=</span> getPaddingLeft();</span><br><span class="line">        <span class="type">int</span> <span class="variable">paddingRight</span> <span class="operator">=</span> getPaddingRight();</span><br><span class="line">        <span class="type">int</span> <span class="variable">paddingTop</span> <span class="operator">=</span> getPaddingTop();</span><br><span class="line">        <span class="type">int</span> <span class="variable">paddingBottom</span> <span class="operator">=</span> getPaddingBottom();</span><br><span class="line"><span class="comment">//处理Padding属性，让当前的ViewGroup支持Padding</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">widthUsed</span> <span class="operator">=</span> paddingLeft + paddingRight;</span><br><span class="line">        <span class="type">int</span> <span class="variable">heightUsed</span> <span class="operator">=</span> paddingTop + paddingBottom;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">childMaxHeightOfThisLine</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">childCount</span> <span class="operator">=</span> getChildCount();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; childCount; i++) &#123;</span><br><span class="line">            <span class="type">View</span> <span class="variable">child</span> <span class="operator">=</span> getChildAt(i);</span><br><span class="line">            <span class="keyword">if</span> (child.getVisibility() != GONE) &#123;</span><br><span class="line"><span class="comment">//       已用的宽度</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">childUsedWidth</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="comment">//      已用的高度</span></span><br><span class="line">                <span class="type">int</span> <span class="variable">childUsedHeight</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"><span class="comment">//  调用ViewGroup自身的方法测量孩子的宽度和高度，我们也可以自己根据MeasureMode来测量</span></span><br><span class="line">                measureChild(child,widthMeasureSpec,heightMeasureSpec);</span><br><span class="line">                childUsedWidth += child.getMeasuredWidth();</span><br><span class="line">                childUsedHeight += child.getMeasuredHeight();</span><br><span class="line"><span class="comment">//处理Margin，支持孩子的Margin属性</span></span><br><span class="line">                <span class="type">Rect</span> <span class="variable">marginRect</span> <span class="operator">=</span> getMarginRect(child);</span><br><span class="line">                <span class="type">int</span> leftMargin=marginRect.left;</span><br><span class="line">                <span class="type">int</span> rightMargin=marginRect.right;</span><br><span class="line">                <span class="type">int</span> topMargin=marginRect.top;</span><br><span class="line">                <span class="type">int</span> bottomMargin=marginRect.bottom;</span><br><span class="line"></span><br><span class="line">                childUsedWidth += leftMargin + rightMargin;</span><br><span class="line">                childUsedHeight += topMargin + bottomMargin;</span><br><span class="line"><span class="comment">//总宽度没有超过本行</span></span><br><span class="line">                <span class="keyword">if</span> (widthUsed + childUsedWidth &lt; widthSpecSize) &#123;</span><br><span class="line">                    widthUsed += childUsedWidth;</span><br><span class="line">                    <span class="keyword">if</span> (childUsedHeight &gt; childMaxHeightOfThisLine) &#123;</span><br><span class="line">                        childMaxHeightOfThisLine = childUsedHeight;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;<span class="comment">//总宽度已经超过本行</span></span><br><span class="line">                    heightUsed += childMaxHeightOfThisLine + verticalSpacing;</span><br><span class="line">                    widthUsed = paddingLeft + paddingRight + childUsedWidth;</span><br><span class="line">                    childMaxHeightOfThisLine = childUsedHeight;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//加上最后一行的最大高度</span></span><br><span class="line">        heightUsed += childMaxHeightOfThisLine;</span><br><span class="line">        setMeasuredDimension(widthSpecSize, heightUsed);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onLayout</span><span class="params">(<span class="type">boolean</span> changed, <span class="type">int</span> l, <span class="type">int</span> t, <span class="type">int</span> r, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">paddingLeft</span> <span class="operator">=</span> getPaddingLeft();</span><br><span class="line">        <span class="type">int</span> <span class="variable">paddingRight</span> <span class="operator">=</span> getPaddingRight();</span><br><span class="line">        <span class="type">int</span> <span class="variable">paddingTop</span> <span class="operator">=</span> getPaddingTop();</span><br><span class="line">        <span class="type">int</span> <span class="variable">paddingBottom</span> <span class="operator">=</span> getPaddingBottom();</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 为了 支持Padding属性</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">childStartLayoutX</span> <span class="operator">=</span> paddingLeft;</span><br><span class="line">        <span class="type">int</span> <span class="variable">childStartLayoutY</span> <span class="operator">=</span> paddingTop;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">widthUsed</span> <span class="operator">=</span> paddingLeft + paddingRight;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">childMaxHeight</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="type">int</span> <span class="variable">childCount</span> <span class="operator">=</span> getChildCount();</span><br><span class="line"><span class="comment">//摆放每一个孩子的高度</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; childCount; i++) &#123;</span><br><span class="line">            <span class="type">View</span> <span class="variable">child</span> <span class="operator">=</span> getChildAt(i);</span><br><span class="line">            <span class="keyword">if</span> (child.getVisibility() != GONE) &#123;</span><br><span class="line">                <span class="type">int</span> childNeededWidth, childNeedHeight;</span><br><span class="line">                <span class="type">int</span> left, top, right, bottom;</span><br><span class="line"></span><br><span class="line">                <span class="type">int</span> <span class="variable">childMeasuredWidth</span> <span class="operator">=</span> child.getMeasuredWidth();</span><br><span class="line">                <span class="type">int</span> <span class="variable">childMeasuredHeight</span> <span class="operator">=</span> child.getMeasuredHeight();</span><br><span class="line"></span><br><span class="line">                <span class="type">Rect</span> <span class="variable">marginRect</span> <span class="operator">=</span> getMarginRect(child);</span><br><span class="line">                <span class="type">int</span> leftMargin=marginRect.left;</span><br><span class="line">                <span class="type">int</span> rightMargin=marginRect.right;</span><br><span class="line">                <span class="type">int</span> topMargin=marginRect.top;</span><br><span class="line">                <span class="type">int</span> bottomMargin=marginRect.bottom;</span><br><span class="line">                childNeededWidth = leftMargin + rightMargin + childMeasuredWidth;</span><br><span class="line">                childNeedHeight = topMargin + topMargin + childMeasuredHeight;</span><br><span class="line"></span><br><span class="line"><span class="comment">//                没有超过本行</span></span><br><span class="line">                <span class="keyword">if</span> (widthUsed + childNeededWidth &lt;= r - l) &#123;</span><br><span class="line">                    <span class="keyword">if</span> (childNeedHeight &gt; childMaxHeight) &#123;</span><br><span class="line">                        childMaxHeight = childNeedHeight;</span><br><span class="line">                    &#125;</span><br><span class="line">                    left = childStartLayoutX + leftMargin;</span><br><span class="line">                    top = childStartLayoutY + topMargin;</span><br><span class="line">                    right = left + childMeasuredWidth;</span><br><span class="line">                    bottom = top + childMeasuredHeight;</span><br><span class="line">                    widthUsed += childNeededWidth;</span><br><span class="line">                    childStartLayoutX += childNeededWidth;</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    childStartLayoutY += childMaxHeight + verticalSpacing;</span><br><span class="line">                    childStartLayoutX = paddingLeft;</span><br><span class="line">                    widthUsed = paddingLeft + paddingRight;</span><br><span class="line">                    left = childStartLayoutX + leftMargin;</span><br><span class="line">                    top = childStartLayoutY + topMargin;</span><br><span class="line">                    right = left + childMeasuredWidth;</span><br><span class="line">                    bottom = top + childMeasuredHeight;</span><br><span class="line">                    widthUsed += childNeededWidth;</span><br><span class="line">                    childStartLayoutX += childNeededWidth;</span><br><span class="line">                    childMaxHeight = childNeedHeight;</span><br><span class="line">                &#125;</span><br><span class="line">                child.layout(left, top, right, bottom);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Rect <span class="title function_">getMarginRect</span><span class="params">(View child)</span> &#123;</span><br><span class="line">        <span class="type">LayoutParams</span> <span class="variable">layoutParams</span> <span class="operator">=</span> child.getLayoutParams();</span><br><span class="line">        <span class="type">int</span> <span class="variable">leftMargin</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">rightMargin</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">topMargin</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="type">int</span> <span class="variable">bottomMargin</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (layoutParams <span class="keyword">instanceof</span> MarginLayoutParams) &#123;</span><br><span class="line">            <span class="type">MarginLayoutParams</span> <span class="variable">marginLayoutParams</span> <span class="operator">=</span> (MarginLayoutParams) layoutParams;</span><br><span class="line">            leftMargin = marginLayoutParams.leftMargin;</span><br><span class="line">            rightMargin = marginLayoutParams.rightMargin;</span><br><span class="line">            topMargin = marginLayoutParams.topMargin;</span><br><span class="line">            bottomMargin = marginLayoutParams.bottomMargin;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">new</span> <span class="title class_">Rect</span>(leftMargin, topMargin, rightMargin, bottomMargin);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="2）思路解析"><a href="#2）思路解析" class="headerlink" title="2）思路解析"></a>2）思路解析</h3><ol>
+<li><p>首先我们重写onMeasure方法，在OnMeasure方法里面我们调用measureChild（）这个方法去获取每个孩子的宽度和高度，每次增加一个孩子我们执行 widthUsed +&#x3D; childUsedWidth;</p>
+</li>
+<li><p>添加完一个孩子以后我们判断widthUsed是够超出控件本身的最大宽度widthSpecSize，<br>若没有超过执行 </p>
+<pre><code>    widthUsed += childUsedWidth;
+    if (childUsedHeight &gt; childMaxHeightOfThisLine) &#123;
+     childMaxHeightOfThisLine = childUsedHeight;
+     &#125;
+</code></pre>
+</li>
+</ol>
+<p>超过控件的宽度执行</p>
+<pre><code>        heightUsed += childMaxHeightOfThisLine + verticalSpacing;
+        widthUsed = paddingLeft + paddingRight + childUsedWidth;
+        childMaxHeightOfThisLine = childUsedHeight;  
+</code></pre>
+<p>最后调用 setMeasuredDimension(widthSpecSize, heightUsed);这个方法去设置它的大小<br>3.在OnLayout方法里面，所做的工作就是去摆放每一个孩子的位置  ，判断需不需要换行，不需要更改left值，需要换行，更改top值</p>
+<h3 id="3）注意事项"><a href="#3）注意事项" class="headerlink" title="3）注意事项"></a>3）注意事项</h3><p>讲解之前，我们先来了解一下一个基本知识</p>
+<h2 id><a href="#" class="headerlink" title></a><img src="http://upload-images.jianshu.io/upload_images/2050203-41f01da256c4c30c.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></h2><p><strong>从这张图片里面我们可以得出这样结论</strong></p>
+<ol>
+<li>Width&#x3D;控件真正的宽度（realWidth）+PaddingLeft+PaddingRight</li>
+<li>margin是子控件相对于父控件的距离</li>
+</ol>
+<p><strong>注意事项</strong></p>
+<ol>
+<li>为了支持控件本身的padding属性，我们做了处理，主要代码如下<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">int widthUsed = paddingLeft + paddingRight;</span><br><span class="line">int heightUsed = paddingTop + paddingBottom;</span><br><span class="line">     ----------</span><br><span class="line">    if (widthUsed + childUsedWidth &lt; widthSpecSize) &#123;</span><br><span class="line">            widthUsed += childUsedWidth;</span><br><span class="line">            if (childUsedHeight &gt; childMaxHeightOfThisLine) &#123;</span><br><span class="line">                  childMaxHeightOfThisLine = childUsedHeight;</span><br><span class="line">              &#125;</span><br><span class="line">          &#125; </span><br></pre></td></tr></table></figure></li>
+<li>为了支持子控件的margin属性，我们同样也做了处理<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Rect marginRect = getMarginRect(child);</span><br><span class="line">int leftMargin=marginRect.left;</span><br><span class="line">int rightMargin=marginRect.right;</span><br><span class="line">int topMargin=marginRect.top;</span><br><span class="line">int bottomMargin=marginRect.bottom;</span><br><span class="line">	</span><br><span class="line">childUsedWidth += leftMargin + rightMargin;</span><br><span class="line">childUsedHeight += topMargin + bottomMargin;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>即我们在计算孩子所占用的宽度和高度的时候加上margin属性的高度，接着在计算需要孩子总共用的宽高度的时候加上每个孩子的margin属性的宽高度，这样自然就支持了孩子的margin属性了</p>
+<h3 id="4-缺陷"><a href="#4-缺陷" class="headerlink" title="4.缺陷"></a>4.缺陷</h3><p>如下图所见，在控件宽度参差不齐的情况下，控件换行会留下一些剩余的宽度，作为想写出鲁棒性的代码的我们会觉得别扭，于是我们相处了解决办法。<br><img src="http://upload-images.jianshu.io/upload_images/2050203-6cf16ca4cb7c2302.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<p>解决方法见下面    </p>
+<h2 id="图二源码解析"><a href="#图二源码解析" class="headerlink" title="图二源码解析"></a>图二源码解析</h2><p><img src="http://upload-images.jianshu.io/upload_images/2050203-29a7127ebbcc1d0e.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240"></p>
+<h3 id="废话不多说，先看源码"><a href="#废话不多说，先看源码" class="headerlink" title="废话不多说，先看源码"></a>废话不多说，先看源码</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 博客地址：http://blog.csdn.net/gdutxiaoxu</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@author</span> xujun</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@time</span> 2016/6/26 22:54.</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">PrefectFlowLayout</span> <span class="keyword">extends</span> <span class="title class_">ViewGroup</span> &#123;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PrefectFlowLayout</span><span class="params">(Context context)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(context);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PrefectFlowLayout</span><span class="params">(Context context, AttributeSet attrs)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(context, attrs);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">public</span> <span class="title function_">PrefectFlowLayout</span><span class="params">(Context context, AttributeSet attrs, <span class="type">int</span> defStyleAttr)</span> &#123;</span><br><span class="line">        <span class="built_in">super</span>(context, attrs, defStyleAttr);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//父容器宽度</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> parentWidthSize;</span><br><span class="line">    <span class="comment">//水平间距</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">horizontalSpacing</span> <span class="operator">=</span> <span class="number">16</span>;</span><br><span class="line">    <span class="comment">//垂直间距</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">verticalSpacing</span> <span class="operator">=</span> <span class="number">16</span>;</span><br><span class="line">    <span class="comment">//当前行</span></span><br><span class="line">    <span class="keyword">private</span> Line currentLine;</span><br><span class="line">    <span class="comment">//所有行的集合</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;Line&gt; mLines = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">    <span class="comment">//当前行已使用宽度</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="variable">userWidth</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 行对象</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">class</span> <span class="title class_">Line</span> &#123;</span><br><span class="line">        <span class="comment">//一行里面所添加的子View集合</span></span><br><span class="line">        <span class="keyword">private</span> List&lt;View&gt; children;</span><br><span class="line">        <span class="comment">//当前行高度</span></span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> height;</span><br><span class="line">        <span class="comment">//当前行已使用宽度</span></span><br><span class="line">        <span class="keyword">private</span> <span class="type">int</span> <span class="variable">lineWidth</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">public</span> <span class="title function_">Line</span><span class="params">()</span> &#123;</span><br><span class="line">            children = <span class="keyword">new</span> <span class="title class_">ArrayList</span>&lt;&gt;();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 添加一个子控件</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> child</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">addChild</span><span class="params">(View child)</span> &#123;</span><br><span class="line">            children.add(child);</span><br><span class="line">            <span class="keyword">if</span> (child.getMeasuredHeight() &gt; height) &#123;</span><br><span class="line">                <span class="comment">//当前行高度以子控件最大高度为准</span></span><br><span class="line">                height = child.getMeasuredHeight();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">//将每个子控件宽度进行累加，记录使用的宽度</span></span><br><span class="line">            lineWidth += child.getMeasuredWidth();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 获取行的高度</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getHeight</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> height;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 获取子控件的数量</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getChildCount</span><span class="params">()</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> children.size();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/**</span></span><br><span class="line"><span class="comment">         * 放置每一行里面的子控件的位置</span></span><br><span class="line"><span class="comment">         *</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> l 距离最左边的距离</span></span><br><span class="line"><span class="comment">         * <span class="doctag">@param</span> t 距离最顶端的距离</span></span><br><span class="line"><span class="comment">         */</span></span><br><span class="line">        <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">onLayout</span><span class="params">(<span class="type">int</span> l, <span class="type">int</span> t)</span> &#123;</span><br><span class="line">            <span class="comment">//当前行使用的宽度，等于每个子控件宽度之和+子控件之间的水平距离</span></span><br><span class="line">            lineWidth += horizontalSpacing * (children.size() - <span class="number">1</span>);</span><br><span class="line">            <span class="type">int</span> <span class="variable">surplusChild</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">            <span class="type">int</span> <span class="variable">surplus</span> <span class="operator">=</span> parentWidthSize - lineWidth;<span class="comment">//剩余宽度</span></span><br><span class="line">            <span class="keyword">if</span> (surplus &gt; <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="comment">//如果有剩余宽度，则将剩余宽度平分给每一个子控件</span></span><br><span class="line">                surplusChild = (<span class="type">int</span>) (surplus / children.size()+<span class="number">0.5</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; children.size(); i++) &#123;</span><br><span class="line">                <span class="type">View</span> <span class="variable">child</span> <span class="operator">=</span> children.get(i);</span><br><span class="line">                child.getLayoutParams().width=child.getMeasuredWidth()+surplusChild;</span><br><span class="line">                <span class="keyword">if</span> (surplusChild&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="comment">//如果长度改变了后，需要重新测量，否则布局中的属性大小还会是原来的大小</span></span><br><span class="line">                    child.measure(MeasureSpec.makeMeasureSpec(</span><br><span class="line">                            child.getMeasuredWidth()+surplusChild,MeasureSpec.EXACTLY)</span><br><span class="line">                            ,MeasureSpec.makeMeasureSpec(height,MeasureSpec.EXACTLY));</span><br><span class="line">                &#125;</span><br><span class="line">                child.layout(l, t, l + child.getMeasuredWidth(), t + child.getMeasuredHeight());</span><br><span class="line">                l += child.getMeasuredWidth() + horizontalSpacing;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//  getMeasuredWidth()   控件实际的大小</span></span><br><span class="line">    <span class="comment">// getWidth()  控件显示的大小</span></span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onMeasure</span><span class="params">(<span class="type">int</span> widthMeasureSpec, <span class="type">int</span> heightMeasureSpec)</span> &#123;</span><br><span class="line">        <span class="comment">//将之前测量的数据进行清空，以防复用时影响下次测量</span></span><br><span class="line">        mLines.clear();</span><br><span class="line">        currentLine = <span class="literal">null</span>;</span><br><span class="line">        userWidth = <span class="number">0</span>;</span><br><span class="line">        <span class="comment">//获取父容器的宽度和模式</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">widthMode</span> <span class="operator">=</span> MeasureSpec.getMode(widthMeasureSpec);</span><br><span class="line">        parentWidthSize = MeasureSpec.getSize(widthMeasureSpec)</span><br><span class="line">                - getPaddingLeft() - getPaddingRight();</span><br><span class="line">        <span class="comment">//获取父容器的高度和模式</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">heigthMode</span> <span class="operator">=</span> MeasureSpec.getMode(heightMeasureSpec);</span><br><span class="line">        <span class="type">int</span> <span class="variable">heightSize</span> <span class="operator">=</span> MeasureSpec.getSize(heightMeasureSpec)</span><br><span class="line">                - getPaddingTop() - getPaddingBottom();</span><br><span class="line">        <span class="type">int</span> childWidthMode, childHeightMode;</span><br><span class="line">        <span class="comment">//为了测量每个子控件，需要指定每个子控件的测量规则</span></span><br><span class="line">        <span class="comment">//子控件设置为WRAP_CONTENT，具体测量规则详见，ViewGroup的getChildMeasureSpec()方法</span></span><br><span class="line">        <span class="keyword">if</span> (widthMode == MeasureSpec.EXACTLY) &#123;</span><br><span class="line">            childWidthMode = MeasureSpec.AT_MOST;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            childWidthMode = widthMode;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (heigthMode == MeasureSpec.EXACTLY) &#123;</span><br><span class="line">            childHeightMode = MeasureSpec.AT_MOST;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            childHeightMode = heigthMode;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//获取到子控件高和宽的测量规则</span></span><br><span class="line">        <span class="type">int</span> <span class="variable">childWidthMeasureSpec</span> <span class="operator">=</span> MeasureSpec.makeMeasureSpec(parentWidthSize, childWidthMode);</span><br><span class="line">        <span class="type">int</span> <span class="variable">childHeightMeasureSpec</span> <span class="operator">=</span> MeasureSpec.makeMeasureSpec(heightSize, childHeightMode);</span><br><span class="line">        currentLine = <span class="keyword">new</span> <span class="title class_">Line</span>();<span class="comment">//创建第一行</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; getChildCount(); i++) &#123;</span><br><span class="line">            <span class="type">View</span> <span class="variable">child</span> <span class="operator">=</span> getChildAt(i);</span><br><span class="line">            <span class="comment">//测量每一个孩子</span></span><br><span class="line">            child.measure(childWidthMeasureSpec, childHeightMeasureSpec);</span><br><span class="line">            <span class="comment">//获取当前子控件的实际宽度</span></span><br><span class="line">            <span class="type">int</span> <span class="variable">childMeasuredWidth</span> <span class="operator">=</span> child.getMeasuredWidth();</span><br><span class="line">            <span class="comment">//让当前行使用宽度加上当前子控件宽度</span></span><br><span class="line">            userWidth += childMeasuredWidth;</span><br><span class="line">            <span class="keyword">if</span> (userWidth &lt;= parentWidthSize) &#123;</span><br><span class="line">                <span class="comment">//如果当前行使用宽度小于父控件的宽度，则加入该行</span></span><br><span class="line">                currentLine.addChild(child);</span><br><span class="line">                <span class="comment">//当前行使用宽度加上子控件之间的水平距离</span></span><br><span class="line">                userWidth += horizontalSpacing;</span><br><span class="line">                <span class="comment">//如果当前行加上水平距离后超出父控件宽度,则换行</span></span><br><span class="line">                <span class="keyword">if</span> (userWidth &gt; parentWidthSize) &#123;</span><br><span class="line">                    newLine();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="comment">//以防出现一个子控件宽度超过父控件的情况出现</span></span><br><span class="line">                <span class="keyword">if</span> (currentLine.getChildCount() == <span class="number">0</span>) &#123;</span><br><span class="line">                    currentLine.addChild(child);</span><br><span class="line">                &#125;</span><br><span class="line">                newLine();</span><br><span class="line">                <span class="comment">//并将超出范围的当前的子控件加入新的行中</span></span><br><span class="line">                currentLine.addChild(child);</span><br><span class="line">                <span class="comment">//并将使用宽度加上子控件的宽度;</span></span><br><span class="line">                userWidth = child.getMeasuredWidth()+horizontalSpacing;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//加入最后一行，因为如果最后一行宽度不足父控件宽度时，就未换行</span></span><br><span class="line">        <span class="keyword">if</span> (!mLines.contains(currentLine)) &#123;</span><br><span class="line">            mLines.add(currentLine);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="type">int</span> <span class="variable">totalHeight</span> <span class="operator">=</span> <span class="number">0</span>;<span class="comment">//总高度</span></span><br><span class="line">        <span class="keyword">for</span> (Line line : mLines) &#123;</span><br><span class="line">            <span class="comment">//总高度等于每一行的高度+垂直间距</span></span><br><span class="line">            totalHeight += line.getHeight() + verticalSpacing;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//resolveSize(),将实际高度与父控件高度进行比较，选取最合适的</span></span><br><span class="line">        setMeasuredDimension(parentWidthSize + getPaddingLeft() + getPaddingRight(),</span><br><span class="line">                resolveSize(totalHeight + getPaddingTop() + getPaddingBottom(), heightMeasureSpec));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 换行</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">newLine</span><span class="params">()</span> &#123;</span><br><span class="line">        mLines.add(currentLine);<span class="comment">//记录之前行</span></span><br><span class="line">        currentLine = <span class="keyword">new</span> <span class="title class_">Line</span>();<span class="comment">//重新创建新的行</span></span><br><span class="line">        userWidth = <span class="number">0</span>;<span class="comment">//将使用宽度初始化</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 放置每个子控件的位置</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> changed</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> l</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> t</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> r</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> b</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="keyword">protected</span> <span class="keyword">void</span> <span class="title function_">onLayout</span><span class="params">(<span class="type">boolean</span> changed, <span class="type">int</span> l, <span class="type">int</span> t, <span class="type">int</span> r, <span class="type">int</span> b)</span> &#123;</span><br><span class="line">        l += getPaddingLeft();</span><br><span class="line">        t += getPaddingTop();</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; mLines.size(); i++) &#123;</span><br><span class="line">            <span class="type">Line</span> <span class="variable">line</span> <span class="operator">=</span> mLines.get(i);</span><br><span class="line">            <span class="comment">//设置每一行的位置，每一行的子控件由其自己去分配</span></span><br><span class="line">            line.onLayout(l, t);</span><br><span class="line">            <span class="comment">//距离最顶端的距离，即每一行高度和垂直间距的累加</span></span><br><span class="line">            t += line.getHeight() + verticalSpacing;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 获取子控件的测量规则</span></span><br><span class="line"><span class="comment">     *</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> mode 父控件的测量规则</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span> 子控件设置为WRAP_CONTENT，具体测量规则详见，ViewGroup的getChildMeasureSpec()方法</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> <span class="title function_">getMode</span><span class="params">(<span class="type">int</span> mode)</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">childMode</span> <span class="operator">=</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span> (mode == MeasureSpec.EXACTLY) &#123;</span><br><span class="line">            childMode = MeasureSpec.AT_MOST;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            childMode = mode;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> childMode;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-思路解析"><a href="#2-思路解析" class="headerlink" title="2.思路解析"></a>2.思路解析</h3><ol>
+<li><p>对比图一的实现思路，我们封装了Line这个内部类，看到这个名字，相信大家都猜到是什么意思了，其实就是一个Line实例对象代表一行，Line里面的List<view> children用来存放孩子</view></p>
+<pre><code> private List&lt;View&gt; children;//一行里面所添加的子View集合
+</code></pre>
+</li>
+<li><p>Line里面还封装了void onLayout(int l, int t)方法，即自己去拜访每个孩子的位置，<br>实现剩余的宽度平均分配，主要体现在这几行代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> if (surplus &gt; 0) &#123;</span><br><span class="line"> //如果有剩余宽度，则将剩余宽度平分给每一个子控件</span><br><span class="line">      surplusChild = (int) (surplus / children.size()+0.5);</span><br><span class="line">  &#125;</span><br><span class="line">             -------</span><br><span class="line">//重新分配每个孩子的大小</span><br><span class="line"></span><br><span class="line">   child.measure(MeasureSpec.makeMeasureSpec(</span><br><span class="line">   child.getMeasuredWidth()+surplusChild,MeasureSpec.EXACTLY)</span><br><span class="line">           ,MeasureSpec.makeMeasureSpec(height,MeasureSpec.EXACTLY));</span><br></pre></td></tr></table></figure></li>
+</ol>
+<h3 id="今天就写到这里了，有时间再来补充，最近考试比较忙，已经好久没有更新博客了。"><a href="#今天就写到这里了，有时间再来补充，最近考试比较忙，已经好久没有更新博客了。" class="headerlink" title="今天就写到这里了，有时间再来补充，最近考试比较忙，已经好久没有更新博客了。"></a>今天就写到这里了，有时间再来补充，最近考试比较忙，已经好久没有更新博客了。</h3><p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/gdutxiaoxu/CustomViewDemo.git"><strong>源码下载地址：</strong></a><a target="_blank" rel="external nofollow noopener noreferrer" href="https://github.com/gdutxiaoxu/CustomViewDemo.git">https://github.com/gdutxiaoxu/CustomViewDemo.git</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/FlowLayout/" rel="tag"># FlowLayout</a>
+              <a href="/tags/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%8E%A7%E4%BB%B6/" rel="tag"># 自定义控件</a>
+              <a href="/tags/%E6%B5%81%E5%B8%83%E5%BC%8F%E5%B8%83%E5%B1%80/" rel="tag"># 流布式布局</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/p/c1c564f1.html" rel="prev" title="360面试心得（Android)">
+      <i class="fa fa-chevron-left"></i> 360面试心得（Android)
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/p/ce27b25b.html" rel="next" title=" Retrofit使用教程（一）- Retrofit入门详解">
+       Retrofit使用教程（一）- Retrofit入门详解 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E7%9A%84%E8%87%AA%E5%AE%9A%E4%B9%89View%E4%BE%8B%E5%AD%90%E4%B8%80%EF%BC%88-FlowLayout%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">常用的自定义View例子一（ FlowLayout）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E5%85%88%E7%BB%99%E5%A4%A7%E5%AE%B6%E7%9C%8B%E4%B8%80%E4%B8%8B%E6%95%88%E6%9E%9C"><span class="nav-number">1.1.</span> <span class="nav-text">1. 先给大家看一下效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E5%BA%9F%E8%AF%9D%E4%B8%8D%E5%A4%9A%E8%AF%B4%E4%BA%86%EF%BC%8C%E5%A4%A7%E5%AE%B6%E6%9D%A5%E7%9B%B4%E6%8E%A5%E7%9C%8B%E6%9D%A5%E7%9C%8B%E4%B8%80%E4%B8%8B%E5%9B%BE%E4%B8%80%E7%9A%84%E6%BA%90%E7%A0%81"><span class="nav-number">1.2.</span> <span class="nav-text">2.废话不多说了，大家来直接看来看一下图一的源码</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1%EF%BC%89%E4%BB%A3%E7%A0%81%E5%A6%82%E4%B8%8B"><span class="nav-number">1.2.1.</span> <span class="nav-text">1）代码如下</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2%EF%BC%89%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90"><span class="nav-number">1.2.2.</span> <span class="nav-text">2）思路解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3%EF%BC%89%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="nav-number">1.2.3.</span> <span class="nav-text">3）注意事项</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number">1.3.</span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-%E7%BC%BA%E9%99%B7"><span class="nav-number">1.3.1.</span> <span class="nav-text">4.缺陷</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9B%BE%E4%BA%8C%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90"><span class="nav-number">1.4.</span> <span class="nav-text">图二源码解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%BA%9F%E8%AF%9D%E4%B8%8D%E5%A4%9A%E8%AF%B4%EF%BC%8C%E5%85%88%E7%9C%8B%E6%BA%90%E7%A0%81"><span class="nav-number">1.4.1.</span> <span class="nav-text">废话不多说，先看源码</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-%E6%80%9D%E8%B7%AF%E8%A7%A3%E6%9E%90"><span class="nav-number">1.4.2.</span> <span class="nav-text">2.思路解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%BB%8A%E5%A4%A9%E5%B0%B1%E5%86%99%E5%88%B0%E8%BF%99%E9%87%8C%E4%BA%86%EF%BC%8C%E6%9C%89%E6%97%B6%E9%97%B4%E5%86%8D%E6%9D%A5%E8%A1%A5%E5%85%85%EF%BC%8C%E6%9C%80%E8%BF%91%E8%80%83%E8%AF%95%E6%AF%94%E8%BE%83%E5%BF%99%EF%BC%8C%E5%B7%B2%E7%BB%8F%E5%A5%BD%E4%B9%85%E6%B2%A1%E6%9C%89%E6%9B%B4%E6%96%B0%E5%8D%9A%E5%AE%A2%E4%BA%86%E3%80%82"><span class="nav-number">1.4.3.</span> <span class="nav-text">今天就写到这里了，有时间再来补充，最近考试比较忙，已经好久没有更新博客了。</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">徐公</p>
+  <div class="site-description" itemprop="description">「Android学习+面试指南」助你升职加薪</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">49</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">30</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+      <div>
+      </div>
+
+      <div class="wechat_OA">
+        <br>
+        <span>公众号回复 <b>“黑马”</b> 两字，可以领取 Android 学习视频，回复 <b>“徐公666”</b>，可以获取简历模板，带你走进大厂</span>
+        <br>
+          <!-- 这里添加你的二维码图片 -->
+        <img src="https://raw.githubusercontent.com/gdutxiaoxu/blog_pic/master/23/0220230217232713.png">
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">徐公</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">328k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">4:58</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
