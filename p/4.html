@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"blog.junxu666.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="!function(){&quot;use strict&quot;;var e&#x3D;{},t&#x3D;{};function n(r){var c&#x3D;t[r];if(void 0!&#x3D;&#x3D;c)return c.exports;var o&#x3D;t[r]&#x3D;{exports:{}},f&#x3D;!0;try{e[r].call(o.exports,o,o.exports,n),f&#x3D;!1}finally{f&amp;&amp;delete t[r]}return o.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="程序员徐公">
+<meta property="og:url" content="https://blog.junxu666.top/p/4.html">
+<meta property="og:site_name" content="程序员徐公">
+<meta property="og:description" content="!function(){&quot;use strict&quot;;var e&#x3D;{},t&#x3D;{};function n(r){var c&#x3D;t[r];if(void 0!&#x3D;&#x3D;c)return c.exports;var o&#x3D;t[r]&#x3D;{exports:{}},f&#x3D;!0;try{e[r].call(o.exports,o,o.exports,n),f&#x3D;!1}finally{f&amp;&amp;delete t[r]}return o.">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2023-03-01T14:34:28.735Z">
+<meta property="article:modified_time" content="2023-03-01T14:34:28.735Z">
+<meta property="article:author" content="徐公">
+<meta property="article:tag" content="Android, Android 学习, 黑马视频, Java, Java 视频, 面试, Android 面试, 面试经验, idea, pycharm, idea 激活">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://blog.junxu666.top/p/4.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title> | 程序员徐公</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="程序员徐公" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">程序员徐公</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">微信公众号：【徐公】</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://blog.junxu666.top/p/4.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="徐公">
+      <meta itemprop="description" content="「Android学习+面试指南」助你升职加薪">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="程序员徐公">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-01 22:34:28" itemprop="dateCreated datePublished" datetime="2023-03-01T22:34:28+08:00">2023-03-01</time>
+            </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>2.7k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>2 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        !function(){"use strict";var e={},t={};function n(r){var c=t[r];if(void 0!==c)return c.exports;var o=t[r]={exports:{}},f=!0;try{e[r].call(o.exports,o,o.exports,n),f=!1}finally{f&&delete t[r]}return o.exports}n.m=e,function(){var e=[];n.O=function(t,r,c,o){if(!r){var f=1/0;for(d=0;d<e.length;d++){r=e[d][0],c=e[d][1],o=e[d][2];for(var u="!0,a=0;a<r.length;a++)(!1&o||f">=o)&&Object.keys(n.O).every((function(e){return n.O[e](r[a])}))?r.splice(a--,1):(u=!1,o<f&&(f=o));if(u){e.splice(d--,1);var i="c();void" 0!="=i&&(t=i)}}return" t}o="o||0;for(var" d="e.length;d">0&&e[d-1][2]>o;d--)e[d]=e[d-1];e[d]=[r,c,o]}}(),n.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return n.d(t,{a:t}),t},function(){var e,t=Object.getPrototypeOf?function(e){return Object.getPrototypeOf(e)}:function(e){return e.__proto__};n.t=function(r,c){if(1&c&&(r=this(r)),8&c)return r;if("object"===typeof r&&r){if(4&c&&r.__esModule)return r;if(16&c&&"function"===typeof r.then)return r}var o=Object.create(null);n.r(o);var f={};e=e||[null,t({}),t([]),t(t)];for(var u=2&c&&r;"object"==typeof u&&!~e.indexOf(u);u=t(u))Object.getOwnPropertyNames(u).forEach((function(e){f[e]=function(){return r[e]}}));return f.default=function(){return r},n.d(o,f),o}}(),n.d=function(e,t){for(var r in t)n.o(t,r)&&!n.o(e,r)&&Object.defineProperty(e,r,{enumerable:!0,get:t[r]})},n.f={},n.e=function(e){return Promise.all(Object.keys(n.f).reduce((function(t,r){return n.f[r](e,t),t}),[]))},n.u=function(e){return"static/chunks/"+(9581===e?"6140ae21":e)+"."+{84:"4082549ed53a4851",93:"d4d014e89ba1b8fe",357:"0908356a7a4cb475",459:"69f64a7003ed1af1",464:"83824899d9aa797e",512:"3a0b936d2076afa8",1111:"51c851c81293397e",1211:"df27c1ce74404c5f",1231:"f8a5a6f3deb4be17",1298:"c2d7a7114ff3a9ae",1400:"77f7122187c5b19a",1502:"76fd3153973a274d",1545:"f3f83532b1a7d309",1610:"5841ac438d895895",1858:"acae04a86b80fda4",1966:"8c1f2518fc27a01a",2429:"45cadb63c310bbbf",2461:"8eadcf7484345f3e",2547:"612227d53fa98089",2973:"dc391187b632932d",3095:"8ebf303a0061b564",3303:"6ae023415e3a6247",3539:"1100184554e9a36b",3794:"b16cf762105cd5a0",4686:"5a136ac9b965d6ce",5167:"91c9f75c90e1f5ae",5271:"ca11fa0bb61b89f7",5807:"8e8197066144ed90",5878:"44275258fdd7d852",6737:"e03811944b660810",6828:"dc0dea5e7ae0a921",7247:"1467c50ea4e73225",7295:"f4806a7d4b785e8b",7381:"ed0c2f755bb807f0",7437:"f708968d1a190754",7715:"bb5d2e979d05ffe5",7839:"7257c8cd6807e25b",8153:"ac66977d70efbabc",8706:"3aa3fd84f9493cdf",9485:"674b3b1c600aebe0",9486:"ddb5430a1952e23e",9581:"812c64c2438f6205",9789:"e19bf9cf4e2ce054"}[e]+".js"},n.miniCssF=function(e){return"static/css/d2462af12994d56e.css"},n.g=function(){if("object"===typeof globalThis)return globalThis;try{return this||new Function("return this")()}catch(e){if("object"===typeof window)return window}}(),n.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},function(){var e={},t="_N_E:";n.l=function(r,c,o,f){if(e[r])e[r].push(c);else{var u,a;if(void 0!==o)for(var i=document.getElementsByTagName("script"),d=0;d<i.length;d++){var 0="==e&&(e={createScriptURL:function(e){return" b="i[d];if(b.getAttribute("src")==r||b.getAttribute("data-webpack")==t+o){u=b;break}}u||(a=!0,(u=document.createElement("script")).charset="utf-8",u.timeout=120,n.nc&&u.setAttribute("nonce",n.nc),u.setAttribute("data-webpack",t+o),u.src=n.tu(r)),e[r]=[c];var" l="function(t,n){u.onerror=u.onload=null,clearTimeout(s);var" c="e[r];if(delete" e[r],u.parentnode&&u.parentnode.removechild(u),c&&c.foreach((function(e){return e(n)})),t)return t(n)},s="setTimeout(l.bind(null,void" 0,{type:"timeout",target:u}),12e4);u.onerror="l.bind(null,u.onerror),u.onload=l.bind(null,u.onload),a&&document.head.appendChild(u)}}}(),n.r=function(e){"undefined"!==typeof" symbol&&symbol.tostringtag&&object.defineproperty(e,symbol.tostringtag,{value:"module"}),object.defineproperty(e,"__esmodule",{value:!0})},function(){var e;n.tt="function(){return" void e}},"undefined"!="=typeof" trustedtypes&&trustedtypes.createpolicy&&(e="trustedTypes.createPolicy("nextjs#bundler",e))),e}}(),n.tu=function(e){return" n.tt().createscripturl(e)},n.p="/_next/" ,function(){var e="{2272:0};n.f.j=function(t,r){var" 0;if(0!="=c)if(c)r.push(c[2]);else" if(2272!="t){var" o="new" promise((function(n,r){c="e[t]=[n,r]}));r.push(c[2]=o);var" f="n.p+n.u(t),u=new" error;n.l(f,(function(r){if(n.o(e,t)&&(0!="=(c=e[t])&&(e[t]=void" 0),c)){var chunk "+t+" failed.\n("+o+": "+f+")",u.name="ChunkLoadError" ,u.type="o,u.request=f,c[1](u)}}),"chunk-"+t,t)}else" e[t]="0},n.O.j=function(t){return" t="function(t,r){var" c,o,f="r[0],u=r[1],a=r[2],i=0;if(f.some((function(t){return" 0!="=e[t]}))){for(c" in u)n.o(u,c)&&(n.m[c]="u[c]);if(a)var" d="a(n)}for(t&&t(r);i<f.length;i++)o=f[i],n.o(e,o)&&e[o]&&e[o][0](),e[o]=0;return" n.o(d)},r="self.webpackChunk_N_E=self.webpackChunk_N_E||[];r.forEach(t.bind(null,0)),r.push=t.bind(null,r.push.bind(r))}()}();" < div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/p/11.html" rel="prev" title>
+      <i class="fa fa-chevron-left"></i> 
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/p/6.html" rel="next" title>
+       <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </i.length;d++){var></f&&(f=o));if(u){e.splice(d--,1);var></e.length;d++){r=e[d][0],c=e[d][1],o=e[d][2];for(var></div></article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">徐公</p>
+  <div class="site-description" itemprop="description">「Android学习+面试指南」助你升职加薪</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">68</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">31</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+      <div>
+      </div>
+
+      <div class="wechat_OA">
+        <br>
+        <span>公众号回复 <b>“黑马”</b> 两字，可以领取 Android 学习视频，回复 <b>“徐公666”</b>，可以获取简历模板，带你走进大厂</span>
+        <br>
+          <!-- 这里添加你的二维码图片 -->
+        <img src="https://raw.githubusercontent.com/gdutxiaoxu/blog_pic/master/23/0220230217232713.png">
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">徐公</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">1.1m</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">16:42</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
