@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.junxu666.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"xujun9411.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="说在前面本次推出 Android  Architecture Components 系列文章，目前写好了四篇，主要是关于 lifecycle，livedata 的使用和源码分析，其余的 Navigation， Paging library，Room，WorkMannager 等春节结束之后会更新，欢迎关注我的公众号，有更新的话会第一时间会在公众号上面通知。 Android lifecycle 使用">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android lifecyle 源码解剖">
-<meta property="og:url" content="https://blog.junxu666.top/p/5201.html">
+<meta property="og:url" content="https://xujun9411.github.io/p/5201.html">
 <meta property="og:site_name" content="程序员徐公">
 <meta property="og:description" content="说在前面本次推出 Android  Architecture Components 系列文章，目前写好了四篇，主要是关于 lifecycle，livedata 的使用和源码分析，其余的 Navigation， Paging library，Room，WorkMannager 等春节结束之后会更新，欢迎关注我的公众号，有更新的话会第一时间会在公众号上面通知。 Android lifecycle 使用">
 <meta property="og:locale" content="zh_CN">
@@ -37,7 +37,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly91c2VyLWdvbGQtY2RuLnhpdHUuaW8vMjAxOS8xMC84LzE2ZGFhZTAwZDUyNmMxNTM?x-oss-process=image/format,png">
 
-<link rel="canonical" href="https://blog.junxu666.top/p/5201.html">
+<link rel="canonical" href="https://xujun9411.github.io/p/5201.html">
 
 
 <script id="page-configurations">
@@ -193,7 +193,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.junxu666.top/p/5201.html">
+    <link itemprop="mainEntityOfPage" href="https://xujun9411.github.io/p/5201.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">

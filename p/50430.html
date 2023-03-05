@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.junxu666.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"xujun9411.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="程序员徐公，希望让你看到程序猿不同的一面，除了分享 Coding，，还有职场心得，面试经验，学习心得，人生感悟等等。希望通过该公众号，我们不只会敲代码，我们还会。。。。。。  闲聊在大三的时候，一直就想搭建属于自己的一个博客，但由于各种原因，最终都不了了之，恰好最近比较有空，于是就自己参照网上的教程，搭建了属于自己的博客。 至于为什么要搭建自己的博客了？ 哈哈，大概是为了装逼吧，同时自己搭建博客的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="手把手教你用Hexo+Github 搭建属于自己的博客">
-<meta property="og:url" content="https://blog.junxu666.top/p/50430.html">
+<meta property="og:url" content="https://xujun9411.github.io/p/50430.html">
 <meta property="og:site_name" content="程序员徐公">
 <meta property="og:description" content="程序员徐公，希望让你看到程序猿不同的一面，除了分享 Coding，，还有职场心得，面试经验，学习心得，人生感悟等等。希望通过该公众号，我们不只会敲代码，我们还会。。。。。。  闲聊在大三的时候，一直就想搭建属于自己的一个博客，但由于各种原因，最终都不了了之，恰好最近比较有空，于是就自己参照网上的教程，搭建了属于自己的博客。 至于为什么要搭建自己的博客了？ 哈哈，大概是为了装逼吧，同时自己搭建博客的">
 <meta property="og:locale" content="zh_CN">
@@ -59,7 +59,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/20210406233311953.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L2dkdXR4aWFveHU=,size_16,color_FFFFFF,t_70">
 
-<link rel="canonical" href="https://blog.junxu666.top/p/50430.html">
+<link rel="canonical" href="https://xujun9411.github.io/p/50430.html">
 
 
 <script id="page-configurations">
@@ -215,7 +215,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.junxu666.top/p/50430.html">
+    <link itemprop="mainEntityOfPage" href="https://xujun9411.github.io/p/50430.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -415,7 +415,7 @@
 <h3 id="配置Deployment"><a href="#配置Deployment" class="headerlink" title="配置Deployment"></a>配置Deployment</h3><p>同样在_config.yml文件中，找到Deployment，然后按照如下修改：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:yourname/yourname.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
-<p>比如我的仓库的地址是<a href="mailto:&#x67;&#x69;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;">&#x67;&#x69;&#x74;&#64;&#103;&#105;&#x74;&#x68;&#x75;&#98;&#46;&#99;&#x6f;&#x6d;</a>:gdutxiaoxu&#x2F;gdutxiaoxu.github.io.git，所以配置如下</p>
+<p>比如我的仓库的地址是<a href="mailto:&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#99;&#111;&#109;">&#x67;&#x69;&#x74;&#x40;&#103;&#x69;&#116;&#x68;&#x75;&#x62;&#46;&#99;&#111;&#109;</a>:gdutxiaoxu&#x2F;gdutxiaoxu.github.io.git，所以配置如下</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">deploy:</span><br><span class="line">  type: git</span><br><span class="line">  repo: git@github.com:gdutxiaoxu/gdutxiaoxu.github.io.git</span><br><span class="line">  branch: master</span><br></pre></td></tr></table></figure>
 
 

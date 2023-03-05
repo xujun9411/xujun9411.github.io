@@ -17,13 +17,13 @@
 
 <script id="hexo-configurations">
     var NexT = window.NexT || {};
-    var CONFIG = {"hostname":"blog.junxu666.top","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+    var CONFIG = {"hostname":"xujun9411.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
   <meta name="description" content="前言IntentService使用及源码分析  HandlerThread源码分析 AsyncTask使用及封装实践 AsyncTask源码分析 这篇博客主要是讲解AsyncTask的使用及封装实践，对于新手们还是有很大的参考意义的，尤其是AsyncTask的封装实践这部分。对于老鸟们，你们可以跳过了。同时需要声明的一点是，下面下载的例子只是进行简单的下载而已，并没有支持断点续传下载。需要的话请自">
 <meta property="og:type" content="article">
 <meta property="og:title" content="AsyncTask 使用及封装实践">
-<meta property="og:url" content="https://blog.junxu666.top/p/62072.html">
+<meta property="og:url" content="https://xujun9411.github.io/p/62072.html">
 <meta property="og:site_name" content="程序员徐公">
 <meta property="og:description" content="前言IntentService使用及源码分析  HandlerThread源码分析 AsyncTask使用及封装实践 AsyncTask源码分析 这篇博客主要是讲解AsyncTask的使用及封装实践，对于新手们还是有很大的参考意义的，尤其是AsyncTask的封装实践这部分。对于老鸟们，你们可以跳过了。同时需要声明的一点是，下面下载的例子只是进行简单的下载而已，并没有支持断点续传下载。需要的话请自">
 <meta property="og:locale" content="zh_CN">
@@ -35,7 +35,7 @@
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://img-blog.csdnimg.cn/img_convert/4c5a1691828bd45549e1c3ca1824118a.gif">
 
-<link rel="canonical" href="https://blog.junxu666.top/p/62072.html">
+<link rel="canonical" href="https://xujun9411.github.io/p/62072.html">
 
 
 <script id="page-configurations">
@@ -191,7 +191,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://blog.junxu666.top/p/62072.html">
+    <link itemprop="mainEntityOfPage" href="https://xujun9411.github.io/p/62072.html">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
