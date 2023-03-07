@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 6.3.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"xujun9411.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false,"limit":10000},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="微人事是一个前后端分离的人力资源管理系统，项目采用 SpringBoot+Vue 开发，项目加入常见的企业级应用所涉及到的技术点，例如 Redis、RabbitMQ 等。 项目效果图首先，不同的用户在登录成功之后，根据不同的角色，会看到不同的系统菜单，完整菜单如下：  不同用户登录上来之后，可能看到的会有差异，如下：  每个用户的角色是由系统管理员进行分配的，系统管理员给用户分配角色的页面如下：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue 毕业设计 - 基于 Vue 和 SpringBoot 前后端分离的人事管理系统">
+<meta property="og:url" content="https://xujun9411.github.io/p/57841.html">
+<meta property="og:site_name" content="程序员徐公">
+<meta property="og:description" content="微人事是一个前后端分离的人力资源管理系统，项目采用 SpringBoot+Vue 开发，项目加入常见的企业级应用所涉及到的技术点，例如 Redis、RabbitMQ 等。 项目效果图首先，不同的用户在登录成功之后，根据不同的角色，会看到不同的系统菜单，完整菜单如下：  不同用户登录上来之后，可能看到的会有差异，如下：  每个用户的角色是由系统管理员进行分配的，系统管理员给用户分配角色的页面如下：">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p278.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p279.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p280.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p281.png">
+<meta property="article:published_time" content="2023-03-04T16:48:08.000Z">
+<meta property="article:modified_time" content="2023-03-05T16:12:46.000Z">
+<meta property="article:author" content="徐公">
+<meta property="article:tag" content="Android, Android 学习, 黑马视频, Java, Java 视频, 面试, Android 面试, 面试经验, idea, pycharm, idea 激活">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p278.png">
+
+<link rel="canonical" href="https://xujun9411.github.io/p/57841.html">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Vue 毕业设计 - 基于 Vue 和 SpringBoot 前后端分离的人事管理系统 | 程序员徐公</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<link rel="alternate" href="/atom.xml" title="程序员徐公" type="application/atom+xml">
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">程序员徐公</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">微信公众号：【徐公】</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a>
+
+  </li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" placeholder="搜索..." spellcheck="false" type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div id="search-result">
+  <div id="no-result">
+    <i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://xujun9411.github.io/p/57841.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="徐公">
+      <meta itemprop="description" content="「Android学习+面试指南」助你升职加薪">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="程序员徐公">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Vue 毕业设计 - 基于 Vue 和 SpringBoot 前后端分离的人事管理系统
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2023-03-05 00:48:08" itemprop="dateCreated datePublished" datetime="2023-03-05T00:48:08+08:00">2023-03-05</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2023-03-06 00:12:46" itemprop="dateModified" datetime="2023-03-06T00:12:46+08:00">2023-03-06</time>
+              </span>
+
+          <br>
+            <span class="post-meta-item" title="本文字数">
+              <span class="post-meta-item-icon">
+                <i class="far fa-file-word"></i>
+              </span>
+                <span class="post-meta-item-text">本文字数：</span>
+              <span>1.4k</span>
+            </span>
+            <span class="post-meta-item" title="阅读时长">
+              <span class="post-meta-item-icon">
+                <i class="far fa-clock"></i>
+              </span>
+                <span class="post-meta-item-text">阅读时长 &asymp;</span>
+              <span>1 分钟</span>
+            </span>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>微人事是一个前后端分离的人力资源管理系统，项目采用 SpringBoot+Vue 开发，项目加入常见的企业级应用所涉及到的技术点，例如 Redis、RabbitMQ 等。</p>
+<h3 id="项目效果图"><a href="#项目效果图" class="headerlink" title="项目效果图"></a>项目效果图</h3><p>首先，不同的用户在登录成功之后，根据不同的角色，会看到不同的系统菜单，完整菜单如下：</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p278.png"><img src="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p278.png" alt="p278"></a></p>
+<p>不同用户登录上来之后，可能看到的会有差异，如下：</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p279.png"><img src="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p279.png" alt="p279"></a></p>
+<p>每个用户的角色是由系统管理员进行分配的，系统管理员给用户分配角色的页面如下：</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p280.png"><img src="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p280.png" alt="p280"></a></p>
+<p>系统管理员也可以管理不同角色可以操作的资源，页面如下：</p>
+<p><a target="_blank" rel="external nofollow noopener noreferrer" href="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p281.png"><img src="https://raw.githubusercontent.com/wiki/lenve/vhr/doc/p281.png" alt="p281"></a></p>
+<h2 id><a href="#" class="headerlink" title></a></h2><h3 id="项目技术栈"><a href="#项目技术栈" class="headerlink" title="项目技术栈"></a>项目技术栈</h3><h4 id="后端技术栈"><a href="#后端技术栈" class="headerlink" title="后端技术栈"></a>后端技术栈</h4><ol>
+<li>Spring Boot</li>
+<li>Spring Security</li>
+<li>MyBatis</li>
+<li>MySQL</li>
+<li>Redis</li>
+<li>RabbitMQ</li>
+<li>Spring Cache</li>
+<li>WebSocket</li>
+<li>…</li>
+</ol>
+<h4 id="前端技术栈"><a href="#前端技术栈" class="headerlink" title="前端技术栈"></a>前端技术栈</h4><ol>
+<li>Vue</li>
+<li>ElementUI</li>
+<li>axios</li>
+<li>vue-router</li>
+<li>Vuex</li>
+<li>WebSocket</li>
+<li>vue-cli4</li>
+<li>…</li>
+</ol>
+<h2 id="快速部署"><a href="#快速部署" class="headerlink" title="快速部署"></a>快速部署</h2><ol>
+<li>clone 项目到本地</li>
+<li>数据库脚本使用 Flyway 管理，<strong>不需要手动导入数据库脚本</strong>，只需要提前在本地 MySQL 中创建一个空的数据库 vhr，并修改项目中关于数据的配置（resources 目录下的 application.properties 文件中）即可</li>
+<li>提前准备好 Redis，在 项目的 application.properties 文件中，将 Redis 配置改为自己的</li>
+<li>提前准备好 RabbitMQ，在项目的 application.properties 文件中将 RabbitMQ 的配置改为自己的（<strong>注意，RabbitMQ 需要分别修改 mailserver 和 vhrserver 的配置文件</strong>）</li>
+<li>在 IntelliJ IDEA 中打开 vhr 项目，启动 mailserver 模块</li>
+<li>运行 vhrserver 中的 vhr-web 模块</li>
+</ol>
+<p><strong>OK，至此，服务端就启动成功了，此时我们直接在地址栏输入 <code>http://localhost:8081/index.html</code> 即可访问我们的项目，如果要做二次开发，请继续看第七、八步。</strong></p>
+<ol>
+<li>进入到vuehr目录中，在命令行依次输入如下命令：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 安装依赖</span><br><span class="line">npm install</span><br><span class="line"></span><br><span class="line"># 在 localhost:8080 启动项目</span><br><span class="line">npm run serve</span><br></pre></td></tr></table></figure>
+
+<p>由于我在 vuehr 项目中已经配置了端口转发，将数据转发到 Spring Boot 上，因此项目启动之后，在浏览器中输入 <code>http://localhost:8080</code> 就可以访问我们的前端项目了，所有的请求通过端口转发将数据传到 Spring Boot 中（注意此时不要关闭 Sprin gBoot 项目）。</p>
+<ol>
+<li>最后可以用 WebStorm 等工具打开 vuehr 项目，继续开发，开发完成后，当项目要上线时，依然进入到 vuehr 目录，然后执行如下命令：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm run build</span><br></pre></td></tr></table></figure>
+
+<p>该命令执行成功之后，vuehr 目录下生成一个 dist 文件夹，将该文件夹中的两个文件 static 和 index.html 拷贝到 Spring Boot 项目中 resources&#x2F;static&#x2F; 目录下，然后就可以像第 6 步那样直接访问了（关于前后端分离部署，大家也可以参考这个<a target="_blank" rel="external nofollow noopener noreferrer" href="https://mp.weixin.qq.com/s/C7PIck3SIPPTcA3NX3ELoQ">使用 Nginx 部署前后端分离项目，解决跨域问题</a>）。</p>
+<p><strong>步骤 7 中需要大家对 NodeJS、NPM 等有一定的使用经验，不熟悉的小伙伴可以先自行搜索学习下，推荐 <a target="_blank" rel="external nofollow noopener noreferrer" href="https://cn.vuejs.org/v2/guide/">Vue 官方教程</a>。</strong></p>
+<h2 id="-1"><a href="#-1" class="headerlink" title></a></h2>
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/p/15193.html" rel="prev" title="2023 年 Sublime Text 激活破解教程，亲测有用">
+      <i class="fa fa-chevron-left"></i> 2023 年 Sublime Text 激活破解教程，亲测有用
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/p/13872.html" rel="next" title="2023 年 Pycharm 激活失效？ 提醒key is  invalid，解决方法都在这里了">
+      2023 年 Pycharm 激活失效？ 提醒key is  invalid，解决方法都在这里了 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E6%95%88%E6%9E%9C%E5%9B%BE"><span class="nav-number">1.</span> <span class="nav-text">项目效果图</span></a></li></ol><li class="nav-item nav-level-2"><a class="nav-link"><span class="nav-number"></span> <span class="nav-text"></span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%A1%B9%E7%9B%AE%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-number">1.</span> <span class="nav-text">项目技术栈</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%90%8E%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-number">1.1.</span> <span class="nav-text">后端技术栈</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%89%8D%E7%AB%AF%E6%8A%80%E6%9C%AF%E6%A0%88"><span class="nav-number">1.2.</span> <span class="nav-text">前端技术栈</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E9%80%9F%E9%83%A8%E7%BD%B2"><span class="nav-number"></span> <span class="nav-text">快速部署</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#-1"><span class="nav-number"></span> <span class="nav-text"></span></a></li></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">徐公</p>
+  <div class="site-description" itemprop="description">「Android学习+面试指南」助你升职加薪</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">60</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">33</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+      <div>
+      </div>
+
+      <div class="wechat_OA">
+        <br>
+        <span>公众号回复 <b>“黑马”</b> 两字，可以领取 Android 学习视频，回复 <b>“徐公666”</b>，可以获取简历模板，带你走进大厂</span>
+        <br>
+          <!-- 这里添加你的二维码图片 -->
+        <img src="https://raw.githubusercontent.com/gdutxiaoxu/blog_pic/master/23/0220230217232713.png">
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2023</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">徐公</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-area"></i>
+    </span>
+    <span title="站点总字数">424k</span>
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">6:26</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">Hexo</a> & <a href="https://pisces.theme-next.org/" class="theme-link" rel="external nofollow noopener noreferrer" target="_blank">NexT.Pisces</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+  
+<script src="/js/local-search.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
